@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário - Cores do Bem</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="Imagens/logo.png">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+        
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"></a>
+            <img src="Imagens/logo.png" alt="Logo do site" class="logo">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor04" aria-controls="navbarColor04" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+                <div class="collapse navbar-collapse" id="navbarColor04">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Início
+                            <span class="visually-hidden">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="outubro_rosa.html">Outubro Rosa</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="novembro_azul.html">Novembro Azul</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="dezembro_laranja.html">Dezembro Laranja</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ods.html">Sustentabilidade e Bem Estar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="formulario.html">Formulario</a>
+                        </li>
+                    </ul>
+      <form class="d-flex">
+        <input class="form-control me-sm-2" type="search" placeholder="Pesquisar">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Procurar</button>
+      </form>
+            </div>
+        </div>
+    </nav>
+
+<div class="container mt-4 mb-5">
+    <h1 class="text-center mb-4" style="color:#494949;">📄 Formulário de Conscientização</h1>
+    <p class="text-center fs-5">
+        Este formulário é parte do site Cores do Bem. Ele busca entender como as campanhas de prevenção influenciam o cuidado pessoal e o ambiente de trabalho.
+    </p>
+    <p class="text-center">
+        <a href="mailto:seu.email@exemplo.com" class="text-primary text-decoration-none" id="email">
+            Entre em contato por e-mail
+        </a>
+    </p>
+
+    <form id="formConscientizacao" class="mt-4 needs-validation" novalidate>
+        <div class="mb-3">
+            <label class="form-label">Seu nome:</label>
+            <input type="text" class="form-control" id="nome" required>
+            <div class="invalid-feedback">Informe seu nome.</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Gênero:</label>
+            <select class="form-select" id="genero" required>
+                <option value="">Selecione</option>
+                <option>Masculino</option>
+                <option>Feminino</option>
+                <option>Outros</option>
+            </select>
+            <div class="invalid-feedback">Escolha uma opção.</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Qual dessas campanhas você mais gostou de ver no site?</label>
+            <select class="form-select" id="campanhaConhecida" required>
+                <option value="">Selecione</option>
+                <option>Outubro Rosa</option>
+                <option>Novembro Azul</option>
+                <option>Dezembro Laranja</option>
+            </select>
+            <div class="invalid-feedback">Escolha uma campanha.</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Qual dessas campanhas você gostaria de ver no site?</label>
+            <select class="form-select" id="campanhaConhecida" required>
+                <option value="">Selecione</option>
+                <option>Janeiro Branco</option>
+                <option>Fevereiro Roxo</option>
+                <option>Junho Vermelho</option>
+                <option>Setembro Amarelo</option>
+            </select>
+            <div class="invalid-feedback">Escolha uma campanha.</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">
+                Você acredita que campanhas como essas mostradas no site realmente mudam atitudes? Por quê?
+            </label>
+            <textarea class="form-control" id="opiniao" rows="3" required></textarea>
+            <div class="invalid-feedback">Escreva sua opinião.</div>
+        </div>
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary px-5">Enviar</button>
+        </div>
+    </form>
+</div>
+
+<footer>
+    <p>Site desenvolvido por Antonio, Bernardo, Ricardo e Henrique.</p>
+    
+</footer>
+
+<div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+    </div>
+</div>
+
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+</script>
+
+<script>
+const campos = ["nome", "email", "genero", "campanhaConhecida", "opiniao",];
+campos.forEach(id => {
+    const campo = document.getElementById(id);
+    if (localStorage.getItem(id)) {
+        campo.value = localStorage.getItem(id);
+    }
+    campo.addEventListener("input", () => {
+        localStorage.setItem(id, campo.value);
+    });
+});
+(() => {
+    const form = document.querySelector('.needs-validation');
+    form.addEventListener('submit', e => {
+        if (!form.checkValidity()) {
+            e.preventDefault();
+            e.stopPropagation();
+        } else {
+            alert("Formulário enviado com sucesso!");
+            localStorage.clear();
+        }
+        form.classList.add('was-validated');
+    });
+})();
+</script>
+</body>
+</html>
