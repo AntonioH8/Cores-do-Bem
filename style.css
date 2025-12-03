@@ -92,7 +92,7 @@ li {
 
 #linguagens {
     display: flex;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
     justify-content: center;
     gap: 1.5%;
     align-items: stretch;
