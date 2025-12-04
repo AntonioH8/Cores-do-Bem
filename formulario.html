@@ -43,11 +43,7 @@
                             <a class="nav-link active" href="formulario.html">Formulário</a>
                         </li>
                     </ul>
-      <form class="d-flex">
-        <input class="form-control me-sm-2" type="search" placeholder="Pesquisar">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Procurar</button>
-      </form>
-            </div>
+                </div>
         </div>
     </nav>
 
@@ -115,11 +111,14 @@
             <button type="submit" class="btn btn-primary px-5">Enviar</button>
         </div>
     </form>
+
+    <div id="mensagemSucesso" class="alert alert-success text-center mt-4 d-none">
+        ✔️ Formulário enviado com sucesso!
+    </div>
 </div>
 
 <footer>
     <p>Site desenvolvido por Antonio Henrique, Bernardo Neto, Ricardo Mota e Henrique Levy.</p>
-    
 </footer>
 
 <div vw class="enabled">
@@ -135,29 +134,43 @@
 </script>
 
 <script>
-const campos = ["nome", "email", "genero", "campanhaConhecida", "opiniao",];
-campos.forEach(id => {
-    const campo = document.getElementById(id);
-    if (localStorage.getItem(id)) {
-        campo.value = localStorage.getItem(id);
-    }
-    campo.addEventListener("input", () => {
-        localStorage.setItem(id, campo.value);
-    });
-});
-(() => {
-    const form = document.querySelector('.needs-validation');
-    form.addEventListener('submit', e => {
-        if (!form.checkValidity()) {
+    (() => {
+        const form = document.getElementById('formConscientizacao');
+        const msg = document.getElementById("mensagemSucesso");
+
+        const campos = ["nome", "genero", "opiniao"];
+
+        campos.forEach(id => {
+            const campo = document.getElementById(id);
+            if (localStorage.getItem(id)) {
+                campo.value = localStorage.getItem(id);
+            }
+
+            campo.addEventListener("input", () => {
+                localStorage.setItem(id, campo.value);
+            });
+        });
+
+        form.addEventListener('submit', e => {
             e.preventDefault();
-            e.stopPropagation();
-        } else {
-            alert("Formulário enviado com sucesso!");
-            localStorage.clear();
-        }
-        form.classList.add('was-validated');
-    });
-})();
+
+            form.classList.add('was-validated');
+
+            if (form.checkValidity()) {
+                msg.classList.remove("d-none");
+                msg.classList.add("show");
+
+                setTimeout(() => {
+                    form.reset();
+                    localStorage.clear();
+                    msg.classList.remove("show");
+                    msg.classList.add("d-none");
+                    form.classList.remove('was-validated');
+                }, 3000);
+            }
+        });
+    })();
 </script>
+
 </body>
 </html>
